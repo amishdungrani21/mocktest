@@ -30,12 +30,8 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORYAMISH21DB: sql_repos
-        ECR_REPOSITORYAMISH21WEB: web_repo
         IMAGE_TAG: V0.1
       run: |
         # Docker build
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORYAMISH21DB:$IMAGE_TAG -f Dockerfile_mysql .
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORYAMISH21DB:$IMAGE_TAG -f Dockerfile_mock .
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORYAMISH21WEB:$IMAGE_TAG .
-        sleep 10
-        docker push $ECR_REGISTRY/$ECR_REPOSITORYAMISH21DB:$IMAGE_TAG
-        docker push $ECR_REGISTRY/$ECR_REPOSITORYAMISH21WEB:$IMAGE_TAG
